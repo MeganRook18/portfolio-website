@@ -1,0 +1,10 @@
+.social-icons {
+  display: flex;
+  & > a {
+    margin-left: 10px;
+    align-self: flex-end;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}

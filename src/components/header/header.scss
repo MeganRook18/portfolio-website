@@ -1,0 +1,44 @@
+.burger {
+  width: 40px;
+  height: 40px;
+  position: fixed;
+  z-index: 7000;
+  right: 45px;
+  top: 45px;
+  display: flex;
+  justify-content: space-around;
+  flex-flow: column;
+  cursor: pointer;
+  &__patty {
+    height: 3.5px;
+    width: 100%;
+    border-radius: 2px;
+    transition: 0.25s ease-in-out;
+  }
+  &__patty:nth-child(2) {
+    width: 60%;
+  }
+  &:hover {
+    .burger__patty:nth-child(2) {
+      width: 100%;
+    }
+    .burger__patty:nth-child(1),
+    .burger__patty:nth-child(3) {
+      width: 60%;
+    }
+  }
+}
+
+.white {
+  .burger__patty {
+    background-color: white;
+    border-color: white;
+  }
+}
+
+.black {
+  .burger__patty {
+    background-color: black;
+    border-color: black;
+  }
+}

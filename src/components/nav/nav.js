@@ -1,60 +1,45 @@
-import React, { useState } from "react";
+import { React } from "react";
 import { Link } from "react-router-dom";
 
-import { Button } from "../button/Button";
+import SocialIcons from "../social-icons/social-icons";
 import "./nav.scss";
 
-function Nav() {
-  const [click, setClick] = useState(false);
-  const [button, setButton] = useState(true);
-
-  const handleClick = () => setClick(!click);
-  const closeMobileMenu = () => setClick(false);
-
-  const showButton = () => {
-    if (window.innerWidth <= 960) {
-      setButton(false);
-    } else {
-      setButton(true);
-    }
-  };
-
-  window.addEventListener("resize", showButton);
-
-  // todo, use for loop for links
-  // https://www.youtube.com/watch?v=I2UBjN5ER4s
-  // 40.19
-
+function Nav(props) {
   return (
-    <nav className="nav">
-      <div className="nav__container">
-        <Link to="/" className="nav__logo">
-          Megan
+    <nav className={props.toggleMenu ? "nav" : "nav-closed"}>
+      <div className="nav__header">
+        <Link to="/" className="header-link" onClick={props.closeMenu}>
+          <span>Megan Rook</span>
         </Link>
-
-        <div className="nav__menu-icon" onClick={handleClick}>
-          <i className={click ? "fas fa-times" : "fas fa-bars"} />
-        </div>
-
-        <ul className={click ? "nav__menu active" : "nav__menu "}>
+      </div>
+      <div className="nav__body">
+        <ul className="nav__links">
           <li className="nav-item">
-            <Link to="/" className="nav-links" onClick={closeMobileMenu}>
-              Home
+            <Link to="/about" className="nav-links" onClick={props.closeMenu}>
+              <span className="big-text link-a">about </span>
+              <span className="under-text link-a">explore &#8594;</span>
             </Link>
           </li>
           <li className="nav-item">
-            <Link to="/about" className="nav-links" onClick={closeMobileMenu}>
-              About
+            <Link to="/work" className="nav-links" onClick={props.closeMenu}>
+              <span className="big-text link-b">work experience </span>
+              <span className="under-text link-b">explore &#8594;</span>
             </Link>
           </li>
           <li className="nav-item">
-            <Link to="/contact" className="nav-links" onClick={closeMobileMenu}>
-              Contact
+            <Link to="/lab" className="nav-links" onClick={props.closeMenu}>
+              <span className="big-text link-c"> lab archive</span>
+              <span className="under-text link-c">explore &#8594;</span>
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link to="/contact" className="nav-links" onClick={props.closeMenu}>
+              <span className="big-text link-d"> contact</span>
+              <span className="under-text link-d">explore &#8594;</span>
             </Link>
           </li>
         </ul>
-
-        {button && <Button buttonStyle="btn--outline">SIGN UP</Button>}
+        <SocialIcons />
       </div>
     </nav>
   );
